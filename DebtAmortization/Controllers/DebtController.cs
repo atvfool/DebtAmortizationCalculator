@@ -4,32 +4,48 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DebtAmortization.Models;
-using DebtAmortization.Classes;
+using DebUtilities;
+using DebtData;
+using Remotion.Linq.Parsing.Structure.NodeTypeProviders;
 
 namespace DebtAmortization.Controllers
 {
     public class DebtController : Controller
     {
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Results()
         {
             DebtModel debtModel = new DebtModel();
 
             string Name = Request.Form["txtName"];
-            double Amount;
-            double APR;
-            double Payment;
+            decimal Amount = 0;
+            decimal APR = 0;
+            decimal Payment = 0;
 
-            double.TryParse(Request.Form["numAmount"].ToString(), out Amount);
-            double.TryParse(Request.Form["numAPR"].ToString(), out APR);
-            double.TryParse(Request.Form["numPayment"].ToString(), out Payment);
+            decimal.TryParse(Request.Form["numAmount"].ToString(), out Amount);
+            decimal.TryParse(Request.Form["numAPR"].ToString(), out APR);
+            decimal.TryParse(Request.Form["numPayment"].ToString(), out Payment);
 
+            APR /= 100;
 
-            Amortization amortization = new Amortization(Name, Amount, APR, Payment);
+            // Save code goes here
+            Data data = new Data();
+            Debt debtToAdd = new Debt() {
+                Name = Name,
+                Amount = Amount,
+                DueDay = 1,
+                Interest = APR,
+                MinPayment = Payment,
+            };
+
+            data.Insert(debtToAdd);
+
+            Amortization amortization = new Amortization(debtToAdd);
 
             debtModel.Name = Name;
             debtModel.Amount = Amount;

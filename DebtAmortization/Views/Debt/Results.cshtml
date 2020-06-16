@@ -1,0 +1,50 @@
+﻿@model DebtModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<div class="row">
+    <div class="col-md-2">
+        <label for="Name" class="control-label">Name:</label>
+        <input type="text" class="form-control" readonly value="@Model.Name" />
+    </div>
+    <div class="col-md-2">
+        <label for="Amount" class="control-label">Amount:</label>
+        <input type="text" class="form-control" readonly value="@Model.Amount" />
+    </div>
+    <div class="col-md-2">
+        <label for="APR" class="control-label">APR:</label>
+        <input type="text" class="form-control" readonly value="@Model.APR" />
+    </div>
+    <div class="col-md-2">
+        <label for="InterestPaid" class="control-label">Interest Paid:</label>
+        <input type="text" class="form-control" readonly value="@Model.AmortizationSchedule.getAmortization().Sum(x=> x.InterestPaid).ToString("$#,##0.00")" />
+    </div>
+    <div class="col-md-2">
+        <label for="Payment" class="control-label">Payment:</label>
+        <input type="text" class="form-control" readonly value="@Model.Payment.ToString("$#,##0.00")" />
+    </div>
+    <div class="col-md-2">
+        <label for="NumOfPayments" class="control-label"># Of Payments:</label>
+        <input type="text" class="form-control" readonly value="@Model.AmortizationSchedule.getAmortization().Count()" />
+    </div>
+</div>
+<br />
+<table class="table">
+    <tr>
+        <th>Month</th>
+        <th>Amount Remaining</th>
+        <th>Payment</th>
+        <th>Interest Paid</th>
+    </tr>
+    @foreach(DebtUtilities.AmortizationEntry ae in Model.AmortizationSchedule.getAmortization())
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem=>ae.Month)</td>
+            <td>@ae.AmountRemaining.ToString("$#,##0.00")</td>
+            <td>@Html.DisplayFor(modelItem=>ae.Payment)</td>
+            <td>@ae.InterestPaid.ToString("$#,##0.00")</td>
+        </tr>
+    }
+</table>

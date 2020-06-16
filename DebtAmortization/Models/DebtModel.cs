@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using DebUtilities;
 
 namespace DebtAmortization.Models
 {
@@ -10,9 +11,9 @@ namespace DebtAmortization.Models
     {
         public string Name { get; set;}
         [DisplayFormat(DataFormatString = "{0:C}")]
-        public double Amount { get; set; }
-        public double APR { get; set; }
-        public double Payment { get; set; }
-        public DebtAmortization.Classes.Amortization AmortizationSchedule { get; set; }
+        public decimal Amount { get; set; }
+        public decimal APR { get; set; }
+        public decimal Payment { get; set; }
+        public Amortization AmortizationSchedule { get; set; }
     }
 }

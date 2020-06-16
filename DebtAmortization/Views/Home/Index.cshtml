@@ -2,43 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-
-
-@using (Html.BeginForm("Index", "Debt", FormMethod.Post))
-{
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="col-md-6 control-label" for="txtName">Name:</label>
-                @Html.TextBox("txtName", null, new { @class="form-control"})
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="col-md-6 control-label" for="numAmount">Amount:</label>
-                @Html.TextBox("numAmount", null, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="col-md-6 control-label" for="numAPR">APR:</label>
-                @Html.TextBox("numAPR", null, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="col-md-6 control-label" for="numPayment">Payment</label>
-                @Html.TextBox("numPayment", null, new { @class = "form-control" })
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-offset-10 col-sm-2">
-            <input type="submit" value="Calculate" class="btn btn-primary" /> 
-        </div>
-    </div>
-}
-
 <div class="row">
-    
+    <h1>Welcome to my Debt Calculator site</h1>    
+    <p>Checkout the Quick Calculate app to get a run down of how your payments over time.</p>
 </div>

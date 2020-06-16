@@ -2,31 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DebtUtilities;
+using DebtData;
 
-namespace DebtAmortization.Classes
+namespace DebUtilities
 {
     public class Amortization
     {
         public string Name { get; set; }
-        public double Amount { get; set; }
-        public double APR { get; set; }
-        public double MinPayment { get; set; }
-        public double Payment { get; set; }
-        
-        public Amortization(string Name, double Amount, double APR, double Payment, double MinPayment = 0.0f)
+        public decimal Amount { get; set; }
+        public decimal APR { get; set; }
+        public decimal MinPayment { get; set; }
+        public decimal Payment { get; set; }
+
+        public Amortization(Debt debt)
         {
-            this.Name = Name;
-            this.Amount = Amount;
-            this.APR = APR/100;
-            this.Payment = Payment;
-            this.MinPayment = MinPayment;
+            this.Name = debt.Name;
+            this.Amount = debt.Amount;
+            this.APR = debt.Interest;
+            this.Payment = debt.MinPayment;
+            this.MinPayment = debt.MinPayment;
         }
-        
+
         public Amortization()
         {
 
         }
-        
+
         /// <summary>
         /// returns a list of payments over the life of the "loan"
         /// </summary>
@@ -35,7 +37,7 @@ namespace DebtAmortization.Classes
         {
             List<AmortizationEntry> lst = new List<AmortizationEntry>();
 
-            double AmountRemaining = Amount;
+            decimal AmountRemaining = Amount;
             AmortizationEntry ae;
             do
             {
@@ -48,7 +50,7 @@ namespace DebtAmortization.Classes
                 lst.Add(ae);
                 AmountRemaining = ae.AmountRemaining;
 
-            } while (AmountRemaining > 0.0f);
+            } while (AmountRemaining > 0);
 
             return lst;
         }
@@ -58,9 +60,9 @@ namespace DebtAmortization.Classes
         /// </summary>
         /// <param name="Amount"></param>
         /// <returns></returns>
-        public double getInterestCost(double Amount)
+        public decimal getInterestCost(decimal Amount)
         {
-            double cost = 0.0f;
+            decimal cost = 0;
 
             cost = Amount * APR / 12;
 
