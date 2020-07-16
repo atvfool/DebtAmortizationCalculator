@@ -1,0 +1,49 @@
+﻿@model DebtAmortization.Models.DebtModel 
+@{
+    ViewData["Title"] = "Edit Debt";
+}
+
+
+
+@using (Html.BeginForm("Edit", "Debt", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-6" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model=>model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-6" })
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.APR, htmlAttributes: new { @class = "control-label col-md-6" })
+                @Html.EditorFor(model => model.APR, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.APR, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Payment, htmlAttributes: new { @class = "control-label col-md-6" })
+                @Html.EditorFor(model => model.Payment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Payment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-10 col-sm-2">
+            <input type="submit" value="Add" class="btn btn-primary" /> 
+        </div>
+    </div>
+}
+
+<div class="row">
+    
+</div>

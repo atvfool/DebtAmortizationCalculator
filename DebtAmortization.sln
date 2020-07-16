@@ -5,12 +5,12 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DebtAmortization", "DebtAmortization\DebtAmortization.csproj", "{5955ED20-AB4D-4769-AF2C-751304FE880B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebtUtilities", "DebtUtilities\DebtUtilities.csproj", "{86858EA1-47E9-4545-B6F2-601EFFADFAA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DebtUtilities", "DebtUtilities\DebtUtilities.csproj", "{86858EA1-47E9-4545-B6F2-601EFFADFAA5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{FD1189DD-4B60-4A3C-88AA-0038879775F6} = {FD1189DD-4B60-4A3C-88AA-0038879775F6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebtData", "DebtData\DebtData.csproj", "{FD1189DD-4B60-4A3C-88AA-0038879775F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DebtData", "DebtData\DebtData.csproj", "{FD1189DD-4B60-4A3C-88AA-0038879775F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

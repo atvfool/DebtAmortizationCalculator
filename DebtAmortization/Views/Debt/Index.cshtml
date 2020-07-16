@@ -3,42 +3,6 @@
 }
 
 
-
-@using (Html.BeginForm("Results", "Debt", FormMethod.Post))
-{
-    <div class="row">
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="col-md-6 control-label" for="txtName">Name:</label>
-                @Html.TextBox("txtName", null, new { @class="form-control"})
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="col-md-6 control-label" for="numAmount">Amount:</label>
-                @Html.TextBox("numAmount", null, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="col-md-6 control-label" for="numAPR">APR:</label>
-                @Html.TextBox("numAPR", null, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label class="col-md-6 control-label" for="numPayment">Payment</label>
-                @Html.TextBox("numPayment", null, new { @class = "form-control" })
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-offset-10 col-sm-2">
-            <input type="submit" value="Calculate" class="btn btn-primary" /> 
-        </div>
-    </div>
-}
-
 <div class="row">
     
 </div>
