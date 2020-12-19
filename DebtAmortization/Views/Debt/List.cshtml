@@ -4,7 +4,59 @@
     Layout = "~/Views/Shared/_Authenticated.cshtml";
 }
 
-@section Scripts{ 
+<div class="row">
+    <a class="btn btn-primary" asp-area="" asp-controller="Debt" asp-action="Add">Add</a>
+</div>
+<div class="row">
+    <table class="table table-bordered table-striped">
+        <thead class="bg-primary">
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>APR</th>
+                <th>Payment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Amount.ToString("$#,###.##")</td>
+                    <td>@item.APR.ToString("P")</td>
+                    <td>@item.Payment.ToString("$#,###.##")</td>
+                    <td>
+                        <button class="btn btn-primary btn-edit" value="@item.ID">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn btn-primary btn-view" value="@item.ID">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn btn-danger btn-delete" value="@item.ID">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot class="bg-primary">
+            <tr>
+                <td></td>
+                <td>@Model.Sum(x => x.Amount).ToString("$#,###.##")</td>
+                <td></td>
+                <td>@Model.Sum(x => x.Payment).ToString("$#,###.##")</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
+
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".btn-delete").click(function (e) {
@@ -24,7 +76,7 @@
             });
 
             $(".btn-view").click(function (e) {
-                window.location.href ="/Debt/Results/" + $(this).val();
+                window.location.href = "/Debt/Results/" + $(this).val();
             });
 
             $(".btn-edit").click(function (e) {
@@ -34,58 +86,3 @@
     </script>
 
 }
-<div class="row">
-    <a class="btn btn-primary" asp-area="" asp-controller="Debt" asp-action="Add">Add</a>
-</div>
-<div class="row">
-    <table class="table table-bordered table-striped">
-        <thead class="bg-primary">
-            <tr>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>APR</th>
-                <th>Payment</th>
-                <th>View Amortization</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Amount.ToString("$#,###.##")</td>
-                    <td>@item.APR.ToString("P")</td>
-                    <td>@item.Payment.ToString("$#,###.##")</td>
-                    <td>
-                        <button class="btn btn-primary btn-edit" value="@item.ID">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary btn-view" value="@item.ID">
-                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger btn-delete" value="@item.ID">
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </button>
-                    </td>
-                </tr>
-            }
-
-        </tbody>
-        <tfoot class="bg-primary">
-            <tr>
-                <td></td>
-                <td>@Model.Sum(x => x.Amount).ToString("$#,###.##")</td>
-                <td></td>
-                <td>@Model.Sum(x => x.Payment).ToString("$#,###.##")</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-
-</div>

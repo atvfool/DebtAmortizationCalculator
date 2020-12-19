@@ -3,19 +3,29 @@
 }
 
 @{
-    bool auth = true;
+    bool valueExists = false;
+    byte[] auth;
 
-    if (!auth)
+    valueExists = Context.Session.TryGetValue("IsAuthenticated", out auth);
+
+    if (!valueExists)
     {
-        Context.Response.Redirect("/Home");
+        Context.Response.Redirect("/Login?redirect=" + Context.Request.Path);
+    }
+    else
+    {
+        string test = System.Text.Encoding.Default.GetString(auth);
+        if (test != "true")
+            Context.Response.Redirect("/Login?redirect=" + Context.Request.Path);
     }
 }
 @section Scripts{
-
+    
 }
 
 <h1>Authenticated</h1>
 @RenderBody()
+
 
 
 @RenderSection("Scripts", required: false)
